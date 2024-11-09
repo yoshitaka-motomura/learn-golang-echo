@@ -1,4 +1,4 @@
-module github.com/yoshitaka-motomura/api-learn-go
+module github.com/yoshitaka-motomura/learn-golang-echo
 
 go 1.23.3
 

@@ -5,8 +5,8 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/yoshitaka-motomura/api-learn-go/config"
-	"github.com/yoshitaka-motomura/api-learn-go/internal/server"
+	"github.com/yoshitaka-motomura/learn-golang-echo/config"
+	"github.com/yoshitaka-motomura/learn-golang-echo/internal/server"
 )
 
 func main() {
