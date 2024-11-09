@@ -13,12 +13,14 @@ type Server struct {
     Logger *slog.Logger
 }
 
-// NewServer initializes a new Echo server with a provided logger
-func NewServer(logger *slog.Logger) *Server {
+func NewServer(logger *slog.Logger, enableAccessLog bool) *Server {
     e := echo.New()
     e.Use(middleware.Recover())
-    e.Use(middleware.Logger())
     e.Use(middleware.CORS())
+
+    if enableAccessLog {
+        e.Use(middleware.Logger())
+    }
 
     // ロガーの設定
     if logger != nil {

@@ -1,5 +1,8 @@
-.PHONY: help build watch
+.PHONY: test help build watch tidy compose-runs compose-down compose-logs compose-restart
 .DEFAULT_GOAL := help
+
+test: ## Run the tests
+	@go test -v ./...
 
 tidy: ## tidy the go modules
 	@echo "tidy"
