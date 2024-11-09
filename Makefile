@@ -1,6 +1,9 @@
 .PHONY: help build watch
 .DEFAULT_GOAL := help
 
+tidy: ## tidy the go modules
+	@echo "tidy"
+	@go mod tidy
 watch: ## Run the server with air
 	@echo "watch"
 	@air -c .air.toml
