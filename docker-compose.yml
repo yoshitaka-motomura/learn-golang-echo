@@ -1,0 +1,14 @@
+services:
+  app:
+    image: echo-app:latest
+    environment:
+      - TZ=Asia/Tokyo
+    ports:
+      - "8080:8080"
+    volumes:
+      - .env:/app/.env
+    networks:
+      - echo-app-network
+networks:
+  echo-app-network:
+    driver: bridge
