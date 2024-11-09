@@ -2,15 +2,15 @@ package server
 
 import (
 	"log/slog"
-	"net/http"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
+	"github.com/yoshitaka-motomura/learn-golang-echo/internal/logging"
+	"github.com/yoshitaka-motomura/learn-golang-echo/internal/routes"
 )
 
 type Server struct {
     Echo   *echo.Echo
-    Logger *slog.Logger
 }
 
 func NewServer(logger *slog.Logger, enableAccessLog bool) *Server {
@@ -27,25 +27,16 @@ func NewServer(logger *slog.Logger, enableAccessLog bool) *Server {
         logger.Info("Logger initialized")
     }
 
-    // シンプルなエンドポイントの設定
-    e.GET("/ping", func(c echo.Context) error {
-        logger.Info("Ping endpoint called")
-        return c.String(http.StatusOK, "pong")
-    })
-
-    e.GET("/hello", func(c echo.Context) error {
-        logger.Info("Hello endpoint called")
-        return c.JSON(http.StatusOK, map[string]string{"message": "Hello, world"})
-    })
+    // ルーティングの設定
+    routes.SetupRoutes(e)
 
     return &Server{
         Echo:   e,
-        Logger: logger,
     }
 }
 
 // Start runs the Echo server on the specified port
 func (s *Server) Start(port string) error {
-    s.Logger.Info("Starting server", "port", port)
+    logging.Logger().Info("Starting server", "port", port)
     return s.Echo.Start(port)
 }
