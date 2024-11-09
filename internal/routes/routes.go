@@ -17,7 +17,7 @@ func SetupRoutes(e *echo.Echo) {
 
 	generalGroup.GET("/hello", func(c echo.Context) error {
 		logging.Logger().Info("Hello endpoint called")
-		return c.JSON(http.StatusOK, map[string]string{"message": "Hello, world", "path": c.Path()})
+		return c.JSON(http.StatusOK, map[string]string{"message": "Hello, world"})
 	})
 	TodosRoutes(e.Group("/todos"))
 }
