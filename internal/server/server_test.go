@@ -1,7 +1,6 @@
 package server
 
 import (
-	"log/slog"
 	"net/http"
 	"net/http/httptest"
 	"os"
@@ -17,10 +16,10 @@ var (
 )
 
 func TestMain(m *testing.M) {
-	// テスト用のロガーを初期化
-	logging.InitLogger(slog.New(&testutils.DiscardHandler{}))
+	// テスト用にDiscardHandlerを使用してロガーを初期化
+	logging.InitLogger(&testutils.DiscardHandler{})
 
-	// サーバーを初期化し、ロガーを設定
+	// テスト用サーバーの初期化
 	s = NewServer(logging.Logger(), false)
 
 	// テストの実行
