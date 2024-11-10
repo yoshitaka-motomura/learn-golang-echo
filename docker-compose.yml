@@ -1,14 +1,16 @@
 services:
-  app:
-    image: echo-app:latest
+  database:
+    image: mysql:8
     environment:
       - TZ=Asia/Tokyo
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=echo_app
+      - MYSQL_USER=echo_app
+      - MYSQL_PASSWORD=echo_app
     ports:
-      - "8080:8080"
+      - "3306:3306"
     volumes:
-      - .env:/app/.env
-    networks:
-      - echo-app-network
+      - ./volume/mysql:/var/lib/mysql
 networks:
   echo-app-network:
     driver: bridge
