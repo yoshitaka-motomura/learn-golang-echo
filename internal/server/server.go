@@ -22,11 +22,6 @@ func NewServer(logger *slog.Logger, enableAccessLog bool) *Server {
         e.Use(middleware.Logger())
     }
 
-    // ロガーの設定
-    if logger != nil {
-        logger.Info("Logger initialized")
-    }
-
     // ルーティングの設定
     routes.SetupRoutes(e)
 
