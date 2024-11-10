@@ -5,7 +5,7 @@ import (
 
 	"github.com/yoshitaka-motomura/learn-golang-echo/utils"
 
-	"github.com/yoshitaka-motomura/learn-golang-echo/internal/models"
+	"github.com/yoshitaka-motomura/learn-golang-echo/internal/todos/models"
 	"gorm.io/gorm"
 )
 

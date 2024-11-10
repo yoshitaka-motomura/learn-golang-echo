@@ -5,8 +5,8 @@ import (
 	"strconv"
 
 	"github.com/labstack/echo/v4"
-	"github.com/yoshitaka-motomura/learn-golang-echo/internal/models"
-	"github.com/yoshitaka-motomura/learn-golang-echo/internal/services/todos"
+	"github.com/yoshitaka-motomura/learn-golang-echo/internal/todos"
+	"github.com/yoshitaka-motomura/learn-golang-echo/internal/todos/models"
 	"github.com/yoshitaka-motomura/learn-golang-echo/utils"
 )
 
@@ -51,5 +51,7 @@ func (h *TodoHandler) CreateTodo(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"error": err.Error()})
 	}
 
-	return c.JSON(http.StatusCreated, nil)
+	
+
+	return c.NoContent(http.StatusCreated)
 }

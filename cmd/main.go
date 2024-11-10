@@ -7,8 +7,8 @@ import (
 	"github.com/yoshitaka-motomura/learn-golang-echo/config"
 	"github.com/yoshitaka-motomura/learn-golang-echo/internal/database"
 	"github.com/yoshitaka-motomura/learn-golang-echo/internal/logging"
-	"github.com/yoshitaka-motomura/learn-golang-echo/internal/models"
 	"github.com/yoshitaka-motomura/learn-golang-echo/internal/server"
+	"github.com/yoshitaka-motomura/learn-golang-echo/internal/todos/models"
 )
 
 func main() {
