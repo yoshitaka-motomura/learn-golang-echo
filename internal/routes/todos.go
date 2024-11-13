@@ -19,5 +19,5 @@ func TodosRoutes(group *echo.Group) {
 	group.GET("/:id", handler.GetTodoById)
 	group.POST("", handler.CreateTodo)
 	// group.PUT("/:id", handler.UpdateTodo)
-	// group.DELETE("/:id", handler.DeleteTodo)
+	group.DELETE("/:id", handler.DeleteTodoByID)
 }

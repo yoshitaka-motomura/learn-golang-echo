@@ -27,3 +27,7 @@ func (r *Repository) GetTodoByID(id uint) (*models.Todo, error) {
 func (r *Repository) CreateTodo(todo models.Todo) error {
 	return r.db.Create(&todo).Error
 }
+
+func (r *Repository) DeleteTodoByID(id uint) error {
+	return r.db.Delete(&models.Todo{}, id).Error
+}

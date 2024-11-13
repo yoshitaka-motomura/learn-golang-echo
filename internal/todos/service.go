@@ -5,6 +5,7 @@ import (
 
 	"github.com/yoshitaka-motomura/learn-golang-echo/utils"
 
+	"github.com/yoshitaka-motomura/learn-golang-echo/internal/logging"
 	"github.com/yoshitaka-motomura/learn-golang-echo/internal/todos/models"
 	"gorm.io/gorm"
 )
@@ -24,7 +25,7 @@ func (s *Service) GetTodos() ([]models.Todo, error) {
 	return s.repo.GetTodos()
 }
 
-
+// GetTodoByIDはIDに一致するTodoを取得します
 func (s *Service) GetTodoByID(id uint) (*models.Todo, error) {
 	todo, err := s.repo.GetTodoByID(id)
 	if err != nil {
@@ -36,6 +37,7 @@ func (s *Service) GetTodoByID(id uint) (*models.Todo, error) {
 	return todo, nil
 }
 
+// CreateTodoは新しいTodoを作成します
 func (s *Service) CreateTodo(todo models.Todo) (*models.Todo, error) {
 	// バリデーションを実行
 	if err := utils.ValidateStruct(todo); err != nil {
@@ -47,4 +49,10 @@ func (s *Service) CreateTodo(todo models.Todo) (*models.Todo, error) {
 		return nil, err
 	}
 	return &todo, nil
+}
+
+// 指定のIDのTODOを削除します
+func (s *Service) DeleteTodoByID(id uint) error {
+	logging.Logger().Info("Deleting todo", "id", id)
+	return s.repo.DeleteTodoByID(id)
 }

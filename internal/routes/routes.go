@@ -19,5 +19,6 @@ func SetupRoutes(e *echo.Echo) {
 		logging.Logger().Info("Hello endpoint called")
 		return c.JSON(http.StatusOK, map[string]string{"message": "Hello, world"})
 	})
-	TodosRoutes(e.Group("/todos"))
+	prefix := "/api/v1"
+	TodosRoutes(e.Group(prefix + "/todos"))
 }
