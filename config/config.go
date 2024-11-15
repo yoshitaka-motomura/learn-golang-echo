@@ -7,11 +7,14 @@ import (
 	"reflect"
 
 	"github.com/joho/godotenv"
+	"gorm.io/gorm/logger"
 )
 
 type Config struct {
 	Port string
 	Dsn  string
+	Environment string
+	LogLevel   logger.LogLevel
 }
 
 type DatabaseConfig struct {
@@ -86,11 +89,28 @@ func LoadConfig() Config {
 		port = "1323" // デフォルトのポート番号
 	}
 
+	env := os.Getenv("APP_ENV")
+	if env == "" {
+		env = "development"
+	}
+
+	var logLevel logger.LogLevel
+	switch env {
+	case "production":
+		logLevel = logger.Error // 本番環境はエラーのみ
+	case "staging":
+		logLevel = logger.Warn  // ステージング環境は警告とエラー
+	default:
+		logLevel = logger.Info  // 開発環境は詳細ログ
+	}
+
 	dbConfig := NewDatabaseConfig()
 	dbConfig.ApplyEnv()
 
 	return Config{
 		Port: port,
 		Dsn:  dbConfig.DSN(),
+		Environment: env,
+		LogLevel: logLevel,
 	}
 }

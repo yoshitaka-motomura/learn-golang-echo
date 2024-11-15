@@ -8,7 +8,6 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/yoshitaka-motomura/learn-golang-echo/internal/logging"
-	"github.com/yoshitaka-motomura/learn-golang-echo/internal/testutils"
 )
 
 var (
@@ -17,7 +16,7 @@ var (
 
 func TestMain(m *testing.M) {
 	// テスト用にDiscardHandlerを使用してロガーを初期化
-	logging.InitLogger(&testutils.DiscardHandler{})
+	logging.InitLogger()
 
 	// テスト用サーバーの初期化
 	s = NewServer(logging.Logger(), false)

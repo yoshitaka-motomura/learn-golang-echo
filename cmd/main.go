@@ -14,7 +14,7 @@ func main() {
     logging.InitLogger()
 
     // データベースの接続
-    database.Connect()
+    database.Connect(cfg)
     // サーバーの起動
     s := server.NewServer(logging.Logger(), true)
     if err := s.Start(":" + cfg.Port); err != nil {

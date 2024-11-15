@@ -7,17 +7,18 @@ import (
 	"github.com/yoshitaka-motomura/learn-golang-echo/internal/logging"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
 
 var DB *gorm.DB
 
-func Connect() {
-	cfg := config.LoadConfig()
-	// 環境変数からデータベース接続情報を取得
-	dsn := cfg.Dsn
+func Connect(config config.Config) {
+	
 
 	// MySQLデータベースに接続
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	db, err := gorm.Open(mysql.Open(config.Dsn), &gorm.Config{
+		Logger: logger.Default.LogMode(config.LogLevel),
+	})
 	if err != nil {
 		log.Fatalf("Failed to connect to database: %v", err)
 	}
